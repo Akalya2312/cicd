@@ -21,11 +21,13 @@
 
     <dependencies>
 
+        <!-- Spring Boot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -34,6 +36,22 @@
 
     </dependencies>
 
-   
+    <build>
+        <plugins>
+
+            <!-- SAFE Surefire config for Jenkins Windows -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <argLine>-Xmx1024m</argLine>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
